@@ -46,10 +46,17 @@ func _on_body_entered(body: Node2D, ) -> void:
 				if tileMapLayer.get_cell_tile_data(tile + Vector2i(transform.x.x, 0)):
 					if tileMapLayer.get_cell_tile_data(tile+Vector2i(transform.x.x, 0)).get_custom_data("Destructable"):
 						tileMapLayer.erase_cell(tile+Vector2i(transform.x.x, 0))
+				elif tileMapLayer.get_cell_tile_data(tile + Vector2i(0, 1)):
+					if tileMapLayer.get_cell_tile_data(tile+Vector2i(0, 1)).get_custom_data("Destructable"):
+						tileMapLayer.erase_cell(tile+Vector2i(0, 1))
+					
 			else:
 				if tileMapLayer.get_cell_tile_data(tile + Vector2i(0, 1)):
 					if tileMapLayer.get_cell_tile_data(tile+Vector2i(0, 1)).get_custom_data("Destructable"):
 						tileMapLayer.erase_cell(tile+Vector2i(0, 1))
+				elif tileMapLayer.get_cell_tile_data(tile + Vector2i(transform.x.x, 0)):
+					if tileMapLayer.get_cell_tile_data(tile+Vector2i(transform.x.x, 0)).get_custom_data("Destructable"):
+						tileMapLayer.erase_cell(tile+Vector2i(transform.x.x, 0))
 		queue_free()
 		
 	pass # Replace with function body.

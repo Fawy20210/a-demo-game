@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var sprite : Sprite2D
 @export var Bomb : PackedScene
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 500.0
+const JUMP_VELOCITY = -610.0
 
 var direction
 
