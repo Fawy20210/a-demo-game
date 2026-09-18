@@ -1,0 +1,41 @@
+[gd_scene format=4 uid="uid://bfhcdcfluuocr"]
+
+[ext_resource type="Texture2D" uid="uid://g2l4gneh26bm" path="res://icon.svg" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cwv4k3fbmjoxm" path="res://player.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dc700e73ghakg" path="res://green.png" id="2_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5mqe"]
+size = Vector2(64, 64)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
+texture = ExtResource("2_h2yge")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_t5mqe"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_1bvp3")
+
+[node name="Node" type="Node" unique_id=74668425]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=766654477]
+script = ExtResource("1_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=213924136]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1859963637]
+shape = SubResource("RectangleShape2D_t5mqe")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1227060289]
+tile_map_data = PackedByteArray("AAD//wEAAgAAAAAAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAACAAEAAgAAAAAAAAADAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAHAAEAAgAAAAAAAAAIAAEAAgAAAAAAAAAJAAEAAgAAAAAAAAAKAAEAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_t5mqe")
