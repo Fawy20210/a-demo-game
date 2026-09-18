@@ -3,40 +3,36 @@
 [ext_resource type="Texture2D" uid="uid://g2l4gneh26bm" path="res://icon.svg" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c5nu1h5n272p" path="res://bomb.tscn" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://cwv4k3fbmjoxm" path="res://player.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://cdlocxq5orppp" path="res://green-blue.png" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://dc700e73ghakg" path="res://green.png" id="2_h2yge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5mqe"]
 size = Vector2(64, 64)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lquwl"]
-texture = ExtResource("4_1bvp3")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
+texture = ExtResource("2_h2yge")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-1:0/0/custom_data_0 = true
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-1:1/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_t5mqe"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
-custom_data_layer_0/name = "Destructable"
-custom_data_layer_0/type = 1
-sources/2 = SubResource("TileSetAtlasSource_lquwl")
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t5mqe"]
-distance = -318.0
+sources/2 = SubResource("TileSetAtlasSource_1bvp3")
 
 [node name="Node" type="Node" unique_id=74668425 groups=["Destructable", "Enemy"]]
 
+[node name="bomb" parent="." unique_id=527325302 node_paths=PackedStringArray("tileMapLayer") instance=ExtResource("1_1bvp3")]
+tileMapLayer = NodePath("../Breakable")
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=766654477 node_paths=PackedStringArray("tileMapLayer2", "sprite")]
 script = ExtResource("1_h2yge")
-tileMapLayer2 = NodePath("../TileMapLayer")
+tileMapLayer2 = NodePath("../Breakable")
 sprite = NodePath("Sprite2D")
 Bomb = ExtResource("1_1bvp3")
 
@@ -51,12 +47,8 @@ shape = SubResource("RectangleShape2D_t5mqe")
 position_smoothing_enabled = true
 
 [node name="BombSpawn" type="Marker2D" parent="Player" unique_id=1966880594]
+scale = Vector2(-1, -1)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1227060289 groups=["Destructable"]]
-tile_map_data = PackedByteArray("AAD//wEAAgAAAAAAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAACAAEAAgAAAAAAAAADAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAHAAEAAgAAAAAAAAAIAAEAAgAAAAAAAAAJAAEAAgAAAAAAAAAKAAEAAgAAAAAAAAAHAAAAAgABAAAAAAA=")
+[node name="Breakable" type="TileMapLayer" parent="." unique_id=1227060289]
+tile_map_data = PackedByteArray("AAD//wEAAgAAAAAAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAACAAEAAgAAAAAAAAADAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAHAAEAAgAAAAAAAAAIAAEAAgAAAAAAAAAJAAEAAgAAAAAAAAAKAAEAAgAAAAAAAAAHAP//AgAAAAAAAAAHAAAAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_t5mqe")
-
-[node name="DeathZone" type="Area2D" parent="." unique_id=1792086375]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=1671677792]
-shape = SubResource("WorldBoundaryShape2D_t5mqe")

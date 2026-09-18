@@ -1,9 +1,14 @@
 extends CharacterBody2D
 
 
+@export var tileMapLayer2 : TileMapLayer;
+@export var sprite : Sprite2D
+@export var Bomb : PackedScene
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+var direction
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -16,10 +21,26 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("Left", "Right")
+	direction = Input.get_axis("Left", "Right")
 	if direction:
+		if(direction==-1):
+			rotation = deg_to_rad(180)
+			sprite.flip_v = true;
+		else:
+			rotation = deg_to_rad(0)
+			sprite.flip_v = false;
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
 	move_and_slide()
+	#look_at(Vector2(position.x+velocity.x,position.y))
+	
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Shoot"):
+		shoot()
+
+func shoot():
+	var b = Bomb.instantiate()
+	b.tileMapLayer = tileMapLayer2
+	b.transform = $BombSpawn.global_transform
+	owner.add_child(b)
