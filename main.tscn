@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c5nu1h5n272p" path="res://bomb.tscn" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://cwv4k3fbmjoxm" path="res://player.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cdlocxq5orppp" path="res://green-blue.png" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://dr2nig0lbc046" path="res://death_zone.gd" id="5_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5mqe"]
 size = Vector2(64, 64)
@@ -53,10 +54,14 @@ position_smoothing_enabled = true
 [node name="BombSpawn" type="Marker2D" parent="Player" unique_id=1966880594]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1227060289 groups=["Destructable"]]
-tile_map_data = PackedByteArray("AAD//wEAAgAAAAAAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAACAAEAAgAAAAAAAAADAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAHAAEAAgAAAAAAAAAIAAEAAgAAAAAAAAAJAAEAAgAAAAAAAAAKAAEAAgAAAAAAAAAHAAAAAgABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD//wEAAgAAAAAAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAACAAEAAgAAAAAAAAADAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAHAAEAAgAAAAAAAAAIAAEAAgAAAAAAAAAJAAEAAgAAAAAAAAAKAAEAAgAAAAAAAAAHAAAAAgABAAAAAAAHAP//AgABAAAAAAAHAP7/AgABAAAAAAAIAP7/AgABAAAAAAAIAP//AgABAAAAAAAIAAAAAgABAAAAAAA=")
 tile_set = SubResource("TileSet_t5mqe")
 
 [node name="DeathZone" type="Area2D" parent="." unique_id=1792086375]
+script = ExtResource("5_lquwl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=1671677792]
 shape = SubResource("WorldBoundaryShape2D_t5mqe")
+
+[connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]

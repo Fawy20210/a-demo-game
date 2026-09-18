@@ -32,7 +32,7 @@ func _on_body_entered(body: Node2D, ) -> void:
 		pass
 	elif body.is_class("TileMapLayer"):
 		var tile = tileMapLayer.local_to_map(tileMapLayer.to_local(position)) #+ Vector2i(transform.x) +Vector2(16*transform.x.x,16)
-		print(position, tile, transform)
+		#print(position, tile, transform)
 		if tileMapLayer.get_cell_tile_data(tile):
 			if tileMapLayer.get_cell_tile_data(tile).get_custom_data("Destructable"):
 				tileMapLayer.erase_cell(tile)
@@ -50,9 +50,6 @@ func _on_body_entered(body: Node2D, ) -> void:
 				if tileMapLayer.get_cell_tile_data(tile + Vector2i(0, 1)):
 					if tileMapLayer.get_cell_tile_data(tile+Vector2i(0, 1)).get_custom_data("Destructable"):
 						tileMapLayer.erase_cell(tile+Vector2i(0, 1))
-				
-		
-	else:
 		queue_free()
 		
 	pass # Replace with function body.
