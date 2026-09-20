@@ -8,7 +8,7 @@ extends CharacterBody2D
 const SPEED = 500.0
 const JUMP_VELOCITY = -610.0
 
-var direction
+var direction = 1
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			rotation = deg_to_rad(0)
 			sprite.flip_v = false;
+			
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -42,5 +43,6 @@ func _process(delta: float) -> void:
 func shoot():
 	var b = Bomb.instantiate()
 	b.tileMapLayer = tileMapLayer2
-	b.transform = $BombSpawn.global_transform
+	b.position = $BombSpawn.global_position
+	b.direction = transform.x.x
 	owner.add_child(b)

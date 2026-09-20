@@ -4,14 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://btkto660uvagc" path="res://bomb.png" id="2_4fn8o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5mqe"]
-size = Vector2(17, 22)
+size = Vector2(17, 17)
 
 [node name="bomb" type="Area2D" unique_id=527325302]
-scale = Vector2(0.25, 0.25)
 script = ExtResource("1_4fn8o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1230603763]
-position = Vector2(-0.5, -3)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_t5mqe")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=958191635]
