@@ -14,6 +14,8 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		get_tree().reload_current_scene()
+	elif body.is_class("TileMapLayer"):
+		return
 	print("killed: ", body)
 	pass # Replace with function body.
 
