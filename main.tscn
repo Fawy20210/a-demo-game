@@ -40,6 +40,8 @@ distance = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb6vf"]
 size = Vector2(128, 192)
 
+[sub_resource type="LabelSettings" id="LabelSettings_t5mqe"]
+
 [node name="Node" type="Node" unique_id=74668425 groups=["Destructable", "Enemy"]]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=766654477 node_paths=PackedStringArray("tileMapLayer2", "sprite")]
@@ -88,6 +90,16 @@ texture = ExtResource("6_272bh")
 
 [node name="Control" parent="CanvasLayer" unique_id=41275761 instance=ExtResource("7_5vw27")]
 visible = false
+
+[node name="Label" type="Label" parent="." unique_id=256733748]
+offset_left = 60.0
+offset_top = -96.0
+offset_right = 353.0
+offset_bottom = -21.0
+text = "Use A and D / Arrow Keys to move.
+Use W / Space / Arrow-Up for jumping.
+Use E / Left-Click for throwing bombs."
+label_settings = SubResource("LabelSettings_t5mqe")
 
 [connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
